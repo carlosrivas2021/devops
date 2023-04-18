@@ -1,3 +1,7 @@
 Challenge-onfire-*/
 node_modules/
 Dockerfile
+
+#vscode
+.devcontainer
+*.code-workspace
