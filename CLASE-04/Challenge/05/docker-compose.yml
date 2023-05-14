@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  service-flask-app:
+    build:
+      context: .
+      dockerfile: api.Dockerfile
+    image: service-flask-app
+    container_name: service-flask-app
+    ports:
+      - "8000:8000"
+  consumer:
+    depends_on:
+      - service-flask-app
+    build:
+      context: .
+      dockerfile: consumer.Dockerfile
+    image: consumer
+    container_name: consumer
+    environment:
+      CONSUMER_SERVICE_HOST: service-flask-app
+      LOCAL: true
+      PYTHONUNBUFFERED: "1"
