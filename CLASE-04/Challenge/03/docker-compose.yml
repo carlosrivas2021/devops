@@ -1,0 +1,12 @@
+version: '3'
+services:
+  bootcamp_web:
+    container_name: bootcamp_web
+    image: nginx:alpine
+    restart: always
+    environment:
+      - TEST=1234
+    ports:
+      - 9999:80
+
+
