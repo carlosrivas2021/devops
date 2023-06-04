@@ -1,0 +1,21 @@
+services: 
+  service-flask-app:
+    container_name: service-flask-app
+    build:
+     context: ./app
+    restart: always
+    ports: 
+      - '8000:8000'
+    networks: 
+      - app_net
+  consumer:
+    container_name: consumer
+    build:
+      context: ./consumer
+    restart: always 
+    ports: 
+      - '8001:8000'
+
+networks:
+  app_net:
+    driver: bridge 

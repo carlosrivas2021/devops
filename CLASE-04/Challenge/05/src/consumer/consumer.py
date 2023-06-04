@@ -14,7 +14,7 @@ def main():
         url = "http://service-flask-app"
     while True:
         try:
-            responde = requests.get(url, timeout=5)
+            responde = requests.get(url, verify=False, timeout=30)
             if responde.ok:
                 print("Response OK!!!")
             else:
@@ -24,7 +24,7 @@ def main():
         except Exception as error:
             print(error)
 
-        sleep(0.2)
+        sleep(1.5)
 
 
 if __name__ == '__main__':
