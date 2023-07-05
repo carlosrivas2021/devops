@@ -1,0 +1,2 @@
+USE ecomdb;
+SHOW TABLES;

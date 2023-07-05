@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  mysql-ecommerce:
+    build:
+      context: .
+      dockerfile: mysql.Dockerfile
+    image: mysql-ecommerce
+    container_name: mysql-ecommerce
+    ports:
+      - "3306:3306"
+    
+  web:
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
+    image: web
+    container_name: web
+    ports:
+      - '8000:80'
+    depends_on:
+      - mysql-ecommerce
+    links:
+      - lamp-app-ecommerce
+
+  lamp-app-ecommerce:
+    build:
+      context: .
+      dockerfile: php.Dockerfile
+    image: lamp-app-ecommerce
+    container_name: lamp-app-ecommerce
+    depends_on:
+      - mysql-ecommerce
+    links:
+      - mysql-ecommerce
